@@ -1,0 +1,26 @@
+# ===== CLion / IntelliJ =====
+.idea/
+cmake-build-*/
+out/
+
+# ===== CMake / 编译产物 =====
+build/
+*.o
+*.obj
+*.elf
+*.hex
+*.bin
+*.map
+*.su
+*.d
+*.a
+*.out
+*.pdb
+*.ilk
+
+# ===== 系统 / 备份 =====
+Thumbs.db
+desktop.ini
+.DS_Store
+*.bak
+*.log
