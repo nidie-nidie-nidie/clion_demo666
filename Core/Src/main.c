@@ -103,10 +103,9 @@ int main(void)
 
     for (int i = 0; i < LEDNUM; i++) {
 
-      HAL_GPIO_WritePin(GPIOC, yinjiao[i], GPIO_PIN_RESET);
-      HAL_Delay(200);
-      HAL_GPIO_WritePin(GPIOC, yinjiao[i], GPIO_PIN_SET);
-      HAL_Delay(500);
+      HAL_GPIO_WritePin(GPIOA, yinjiao[i], GPIO_PIN_RESET);
+      HAL_Delay(300);
+      HAL_GPIO_WritePin(GPIOA, yinjiao[i], GPIO_PIN_SET);
 
     }
 
@@ -173,7 +172,7 @@ void Error_Handler(void)
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.
   * @param  file: pointer to the source file name
-  * @param  line: pointer to the source line number
+  * @param  line: assert_param error line source number
   * @retval None
   */
 void assert_failed(uint8_t *file, uint32_t line)
