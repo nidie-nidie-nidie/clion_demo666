@@ -98,7 +98,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-    uint16_t yinjiao[] = {GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15,GPIO_PIN_1};
+    uint16_t yinjiao[] = {GPIO_PIN_1, GPIO_PIN_2, GPIO_PIN_3,GPIO_PIN_4};
     #define LEDNUM (sizeof(yinjiao) / sizeof(yinjiao[0]))
 
     for (int i = 0; i < LEDNUM; i++) {
