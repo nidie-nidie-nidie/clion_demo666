@@ -94,7 +94,9 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   static GPIO_PinState keyend = GPIO_PIN_SET;
-  static uint8_t  ledstate   = 0;
+   uint16_t led[]={GPIO_PIN_1,GPIO_PIN_2,GPIO_PIN_3,GPIO_PIN_4};
+int i=0;
+  int j=1;
   while (1)
   {
     /* USER CODE END WHILE */
@@ -104,12 +106,19 @@ int main(void)
     if (keyend == GPIO_PIN_SET && key == GPIO_PIN_RESET)
     {HAL_Delay(15);
       if (HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_11) == GPIO_PIN_RESET) {
-        ledstate = !ledstate;
-        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1,ledstate ? GPIO_PIN_RESET : GPIO_PIN_SET);
+        j=-j;
+
       }
-
-
-
+    }
+    HAL_GPIO_WritePin(GPIOA, led[i],GPIO_PIN_RESET);
+    HAL_Delay(200);
+    HAL_GPIO_WritePin(GPIOA, led[i],GPIO_PIN_SET);
+    i=i+j;
+    if (i<0) {
+      i=sizeof(led)/sizeof(led[0])-1;
+    }
+    if (i>sizeof(led)/sizeof(led[0])-1) {
+      i=0;
     }
     keyend=key;
   }
