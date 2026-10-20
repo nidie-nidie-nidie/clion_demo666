@@ -92,24 +92,27 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  static GPIO_PinState keyend = GPIO_PIN_SET;
+  static uint8_t  ledstate   = 0;
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    GPIO_PinState key = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_11);
+    if (keyend == GPIO_PIN_SET && key == GPIO_PIN_RESET)
+    {HAL_Delay(15);
+      if (HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_11) == GPIO_PIN_RESET) {
+        ledstate = !ledstate;
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1,ledstate ? GPIO_PIN_RESET : GPIO_PIN_SET);
+      }
 
-    uint16_t yinjiao[] = {GPIO_PIN_1, GPIO_PIN_2, GPIO_PIN_3,GPIO_PIN_4};
-    #define LEDNUM (sizeof(yinjiao) / sizeof(yinjiao[0]))
 
-    for (int i = 0; i < LEDNUM; i++) {
-
-      HAL_GPIO_WritePin(GPIOA, yinjiao[i], GPIO_PIN_RESET);
-      HAL_Delay(300);
-      HAL_GPIO_WritePin(GPIOA, yinjiao[i], GPIO_PIN_SET);
 
     }
-
+    keyend=key;
   }
+
   /* USER CODE END 3 */
 }
 
